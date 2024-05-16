@@ -15,13 +15,13 @@ This is how you should run the tests:
 python -m unittest discover -s tests
 ```
 
-## Optimization Methods
+#Optimization Methods
 The project includes implementations for the following optimization methods:
 
-# Gradient Descent:
+### Gradient Descent:
 A simple iterative method for unconstrained optimization problems.
 
-# Newton's Method:
+### Newton's Method:
 An optimization method that uses second-order information (the Hessian) to achieve faster convergence.
 
 Functions Tested:
