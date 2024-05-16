@@ -9,7 +9,7 @@ To run the project, ensure you have Python installed. You can install the requir
 
 ```sh
 pip install -r requirements.txt
-```sh
+```
 this is how you should run the tests: python -m unittest discover -s tests
 
 ## Optimization Methods
