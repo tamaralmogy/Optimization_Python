@@ -10,7 +10,10 @@ To run the project, ensure you have Python installed. You can install the requir
 ```sh
 pip install -r requirements.txt
 ```
-this is how you should run the tests: python -m unittest discover -s tests
+This is how you should run the tests:
+```sh
+python -m unittest discover -s tests
+```
 
 ## Optimization Methods
 The project includes implementations for the following optimization methods:
