@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "C:/Users/tamar/OneDrive/Documents/School/Third_year/numerical_opt_python/programming_hw1/HW_1/src",
+        "C:/Users/tamar/OneDrive/Documents/School/Third_year/numerical_opt_python/programming_hw1/HW_1/tests"
+    ]
+}
