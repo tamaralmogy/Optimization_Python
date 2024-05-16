@@ -15,7 +15,7 @@ This is how you should run the tests:
 python -m unittest discover -s tests
 ```
 
-#Optimization Methods
+# Optimization Methods
 The project includes implementations for the following optimization methods:
 
 ### Gradient Descent:
