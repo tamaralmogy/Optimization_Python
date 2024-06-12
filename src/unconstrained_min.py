@@ -33,57 +33,66 @@ class LineSearchOptimizer:
         return alpha
 
     def gradient_descent(self):
+        # Flag to indicate whether we successfully converged
         success = False
         for i in range(self.max_iter):
+            # Calculate f(x) and gradient at the current point x
             f_x, g, _ = self.func(self.x)[:3]
             self.path.append(self.x.copy())
             self.values.append(f_x)
 
-            if np.linalg.norm(g) < self.param_tol:
-                success = True
-                break
-
+            # Define search direction and step size
             p = -g
             alpha = self.wolfe_condition(self.x, p, g)
+            
+            # Calculate the new point x_new
             x_new = self.x + alpha * p
             f_x_new, g_new, _ = self.func(x_new)[:3]
 
             print(f"Iteration {i}: x = {x_new}, f(x) = {f_x_new}, grad = {np.linalg.norm(g)}, alpha = {alpha}")
-            if (abs(f_x_new - f_x) < self.obj_tol) or (np.linalg.norm(x_new - self.x) < self.param_tol):
+            
+            # Check for convergence - Gradient norm check & objective function change check 
+            if np.linalg.norm(g) < self.param_tol or abs(f_x_new - f_x) < self.obj_tol:
                 self.x = x_new
                 success = True
                 break
-
+            
+            # Update current point to be the new point
             self.x = x_new
 
         print(f"Final iteration report: x = {self.x}, f(x) = {f_x_new}, grad = {g_new}, alpha = {alpha}, success = {success}")
+        
         return self.x, f_x_new
 
 
     def newton(self):
         success = False
         for i in range(self.max_iter):
+            # Compute f(x) the gradient and the Hessian at the current point x
             f_x, g, H = self.func(self.x)[:3]
             self.path.append(self.x.copy())
             self.values.append(f_x)
 
-            if np.linalg.norm(g) < self.param_tol:
-                success = True
-                break
-
+            # Define search direction and step size
             p = -np.linalg.solve(H, g)
             alpha = self.wolfe_condition(self.x, p, g)
+            
+            # Update new point according to search direction and step size
             x_new = self.x + alpha * p
             f_x_new, g_new, _ = self.func(x_new)[:3]
 
             print(f"Iteration {i}: x = {x_new}, f(x) = {f_x_new}, grad = {np.linalg.norm(g)}, alpha = {alpha}")
-            if (abs(f_x_new - f_x) < self.obj_tol) or (np.linalg.norm(x_new - self.x) < self.param_tol):
+            
+            # Check convergence 
+            if np.linalg.norm(g) < self.param_tol or abs(f_x_new - f_x) < self.obj_tol:
                 self.x = x_new
                 success = True
                 break
-
+            
+            # Update new point to be the current point
             self.x = x_new
-
+        
+        #  Print final iteration report 
         print(f"Final iteration report: x = {self.x}, f(x) = {f_x_new}, grad = {g_new}, alpha = {alpha}, success = {success}")
         return self.x, f_x_new
 
